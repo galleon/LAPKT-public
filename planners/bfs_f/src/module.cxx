@@ -29,10 +29,12 @@ BOOST_PYTHON_MODULE( libbfsf )
 		.def( "print_fluents", &BFS_f_Planner::print_fluents )
 		.def( "setup", &BFS_f_Planner::setup )
 		.def( "solve", &BFS_f_Planner::solve )
+		.def( "get_plan", &BFS_f_Planner::get_plan ) // added by Florent Teichteil-Koenigsbuch
 		.def_readwrite( "ignore_action_costs", &BFS_f_Planner::m_ignore_action_costs )
 		.def_readwrite( "parsing_time", &BFS_f_Planner::m_parsing_time )
 		.def_readwrite( "max_novelty", &BFS_f_Planner::m_max_novelty )
 		.def_readwrite( "log_filename", &BFS_f_Planner::m_log_filename )
+		.def_readwrite( "plan_filename", &BFS_f_Planner::m_plan_filename ) // added by Florent Teichteil-Koenigsbuch
 		.def_readwrite( "one_ha_per_fluent", &BFS_f_Planner::m_one_ha_per_fluent )
 	;
 }

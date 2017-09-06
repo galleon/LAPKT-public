@@ -41,6 +41,7 @@ BFS_f_Planner::do_search( Anytime_GBFS_H_Add_Rp_Fwd& engine ) {
 	unsigned generated_0 = engine.generated();
 
 	std::ofstream	plan_stream( m_plan_filename.c_str() );
+	m_plan = boost::python::list(); // added by Florent Teichteil-Koenigsbuch
 
 	if ( engine.find_solution( cost, plan ) ) {
 		std::cout << "Plan found with cost: " << cost << std::endl;
@@ -50,6 +51,7 @@ BFS_f_Planner::do_search( Anytime_GBFS_H_Add_Rp_Fwd& engine ) {
 			std::cout << a.signature();
 			std::cout << std::endl;
 			plan_stream << a.signature() << std::endl;
+			m_plan.append(a.signature()); // added by Florent Teichteil-Koenigsbuch
 		}
 		float tf = aptk::time_used();
 		unsigned expanded_f = engine.expanded();

@@ -73,6 +73,7 @@ public:
 	
 	virtual void setup();
 	void	solve();
+	boost::python::list get_plan() const { return m_plan; }  // added by Florent Teichteil-Koenigsbuch
 
 	int		m_max_novelty;
 	std::string	m_log_filename;
@@ -82,6 +83,7 @@ public:
 protected:
 	
 	float	do_search( Anytime_GBFS_H_Add_Rp_Fwd& engine);
+	boost::python::list m_plan; // added by Florent Teichteil-Koenigsbuch
 
 };
 
