@@ -66,6 +66,10 @@ if(NOT __dst)
   endif()
 endif()
 
+message(WARNING "__dest: ${__dest})
+
+file(COPY external/fd DESTINATION ${__dest})
+
 install(TARGETS ${the_module}
  ${PYTHON_INSTALL_CONFIGURATIONS}
  RUNTIME DESTINATION "${__dst}" COMPONENT python
