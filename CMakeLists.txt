@@ -10,14 +10,24 @@ message (WARNING "PYTHON_VERSION_MAJOR: ${PYTHON_VERSION_MAJOR}")
 #else()
 #  find_package(Boost COMPONENTS python)
 #endif()
-
+#
 find_package(Boost 1.61)
-
+#
 find_package(Boost COMPONENTS python REQUIRED)
-#find_package(PythonLibs REQUIRED)
-
+#
+# Add BOOST & PYTHON include
+#
 include_directories(${Boost_INCLUDE_DIR} ${PYTHON_INCLUDE_DIRS})
+#
+# aptk is in include
+#
 include_directories(include planners/python/agnostic/ interfaces/agnostic/)
+
+if(CMAKE_COMPILER_IS_GNUCXX)
+  add_definitions("-O3 -Wall -std=c++0x -DNDEBUG")
+else()
+  message(FATAL_ERROR "CMakeLists.txt has not been tested/written for your compiler.")
+endif()
 
 add_subdirectory(planners/bfs_f/src)
 
@@ -25,9 +35,3 @@ add_subdirectory(planners/bfs_f/src)
 
 #add_library(demo SHARED ./main.cpp)
 #target_link_libraries(demo ${CORELIBS})
-
-#if(CMAKE_COMPILER_IS_GNUCXX)
-#  add_definitions("-Wall")
-#else()
-#  message(FATAL_ERROR "CMakeLists.txt has not been tested/written for your compiler.")
-#endif()
