@@ -13,20 +13,13 @@ find_package(PythonLibs REQUIRED)
 message (WARNING "PYTHONLIBS_VERSION_STRING: ${PYTHONLIBS_VERSION_STRING}")
 message (WARNING "PYTHON_VERSION_MAJOR: ${PYTHON_VERSION_MAJOR}")
 
-#if (${PYTHON_VERSION_MAJOR} EQUAL 3)
-#  find_package(Boost COMPONENTS python3)
-#else()
-#  find_package(Boost COMPONENTS python)
-#endif()
-#
 find_package(Boost 1.61)
 #
-find_package(Boost COMPONENTS python REQUIRED)
-
-#
-# Add BOOST & PYTHON include
-#
-#include_directories(${Boost_INCLUDE_DIR} ${PYTHON_INCLUDE_DIRS})
+if (${PYTHON_VERSION_MAJOR} EQUAL 3)
+  find_package(Boost COMPONENTS python3)
+else()
+  find_package(Boost COMPONENTS python)
+endif()
 #
 # aptk is C++ and is located in src & include [Should we create a lib?]
 # interfaces/agnostic/ contains only C++ [Should we create a lib?]
@@ -59,20 +52,21 @@ if(NOT __dst)
   else()
     set(__ver "unknown")
   endif()
+  message(WARNING "__ver: ${__ver}")
   if(INSTALL_CREATE_DISTRIB)
-    set(__dst "python/${__ver}/${OpenCV_ARCH}")
+    set(__dst "python/${__ver}")
   else()
     set(__dst "python/${__ver}")
   endif()
 endif()
 
-message(WARNING "__dest: ${__dest})
+message(WARNING "__dest: ${__dest}")
 
-file(COPY external/fd DESTINATION ${__dest})
+file(COPY external/fd DESTINATION "${__dest}")
 
-install(TARGETS ${the_module}
- ${PYTHON_INSTALL_CONFIGURATIONS}
- RUNTIME DESTINATION "${__dst}" COMPONENT python
- LIBRARY DESTINATION "${__dst}" COMPONENT python
- ${PYTHON_INSTALL_ARCHIVE}
-)
+#install(TARGETS libbfsf
+#  ${PYTHON_INSTALL_CONFIGURATIONS}
+#  RUNTIME DESTINATION "${__dst}" COMPONENT python
+#  LIBRARY DESTINATION "${__dst}" COMPONENT python
+#  ${PYTHON_INSTALL_ARCHIVE}
+#)
