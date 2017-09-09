@@ -12,6 +12,7 @@ find_package(PythonLibs REQUIRED)
 
 message (WARNING "PYTHONLIBS_VERSION_STRING: ${PYTHONLIBS_VERSION_STRING}")
 message (WARNING "PYTHON_VERSION_MAJOR: ${PYTHON_VERSION_MAJOR}")
+message (WARNING "PYTHON_VERSION_MINOR: ${PYTHON_VERSION_MINOR}")
 
 find_package(Boost 1.61)
 #
@@ -44,11 +45,13 @@ add_subdirectory(planners/bfs_f/src)
 set(PYTHON_INSTALL_CONFIGURATIONS "")
 set(__dst "${PYTHON_PACKAGES_PATH}")
 
+message(WARNING "__dest: ${__dest}")
+
 if(NOT __dst)
-  if(DEFINED ${PYTHON}_VERSION_MAJOR)
-    set(__ver "${${PYTHON}_VERSION_MAJOR}.${${PYTHON}_VERSION_MINOR}")
-  elseif(DEFINED ${PYTHON}_VERSION_STRING)
-    set(__ver "${${PYTHON}_VERSION_STRING}")
+  if(DEFINED ${PYTHON_VERSION_MAJOR})
+    set(__ver "${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}")
+  elseif(DEFINED ${PYTHON_VERSION_STRING})
+    set(__ver "${PYTHON_VERSION_STRING}")
   else()
     set(__ver "unknown")
   endif()
@@ -70,3 +73,4 @@ file(COPY external/fd DESTINATION "${__dest}")
 #  LIBRARY DESTINATION "${__dst}" COMPONENT python
 #  ${PYTHON_INSTALL_ARCHIVE}
 #)
+install(TARGETS libfsf DESTINATION i${__dest})
