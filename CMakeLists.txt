@@ -73,4 +73,7 @@ file(COPY external/fd DESTINATION "${__dest}")
 #  LIBRARY DESTINATION "${__dst}" COMPONENT python
 #  ${PYTHON_INSTALL_ARCHIVE}
 #)
-install(TARGETS libfsf DESTINATION i${__dest})
+install(TARGETS aptk DESTINATION ${__dest})
+install(TARGETS agnostic DESTINATION ${__dest})
+install(TARGETS pyagnostic DESTINATION ${__dest})
+install(TARGETS fsf DESTINATION ${__dest})
