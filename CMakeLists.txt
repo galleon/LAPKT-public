@@ -34,16 +34,10 @@ else()
   message(FATAL_ERROR "CMakeLists.txt has not been tested/written for your compiler.")
 endif()
 
-add_subdirectory(src)
-add_subdirectory(interfaces/agnostic)
-#
-add_subdirectory(planners/python/agnostic)
-add_subdirectory(planners/bfs_f/src)
-
 # ICI JE CHERCHE A COPIER MES FICHIERS POUR EVENTUELLEMENT CREER MON MODULE
 
 set(PYTHON_INSTALL_CONFIGURATIONS "")
-message(WARNING "CREATING __DST")
+message(WARNING "CREATING __DST with ${PYTHON_PACKAGES_PATH}")
 set(__dst "${PYTHON_PACKAGES_PATH}")
 
 message(WARNING "__dest: ${__dest}")
@@ -67,6 +61,12 @@ endif()
 message(WARNING "__dest: ${__dest}")
 
 file(COPY external/fd DESTINATION "${__dest}")
+
+add_subdirectory(src)
+add_subdirectory(interfaces/agnostic)
+#
+add_subdirectory(planners/python/agnostic)
+add_subdirectory(planners/bfs_f/src)
 
 #install(TARGETS libbfsf
 #  ${PYTHON_INSTALL_CONFIGURATIONS}
