@@ -40,7 +40,7 @@ set(PYTHON_INSTALL_CONFIGURATIONS "")
 message(WARNING "CREATING __DST with ${PYTHON_PACKAGES_PATH}")
 set(__dst "${PYTHON_PACKAGES_PATH}")
 
-message(WARNING "__dest: ${__dest}")
+message(WARNING "__dst: ${__dst}")
 
 if(NOT __dst)
   if(DEFINED ${PYTHON_VERSION_MAJOR})
@@ -58,9 +58,9 @@ if(NOT __dst)
   endif()
 endif()
 
-message(WARNING "__dest: ${__dest}")
+message(WARNING "__dst: ${__dst}")
 
-file(COPY external/fd DESTINATION "${__dest}")
+file(COPY external/fd DESTINATION "${__dst}")
 
 add_subdirectory(src)
 add_subdirectory(interfaces/agnostic)
