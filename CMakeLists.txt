@@ -37,10 +37,7 @@ endif()
 # ICI JE CHERCHE A COPIER MES FICHIERS POUR EVENTUELLEMENT CREER MON MODULE
 
 set(PYTHON_INSTALL_CONFIGURATIONS "")
-message(WARNING "CREATING __DST with ${PYTHON_PACKAGES_PATH}")
 set(__dst "${PYTHON_PACKAGES_PATH}")
-
-message(WARNING "__dst: ${__dst}")
 
 if(NOT __dst)
   if(DEFINED ${PYTHON_VERSION_MAJOR})
@@ -67,10 +64,3 @@ add_subdirectory(interfaces/agnostic)
 #
 add_subdirectory(planners/python/agnostic)
 add_subdirectory(planners/bfs_f/src)
-
-#install(TARGETS libbfsf
-#  ${PYTHON_INSTALL_CONFIGURATIONS}
-#  RUNTIME DESTINATION "${__dst}" COMPONENT python
-#  LIBRARY DESTINATION "${__dst}" COMPONENT python
-#  ${PYTHON_INSTALL_ARCHIVE}
-#)
