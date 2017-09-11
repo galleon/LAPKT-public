@@ -2,3 +2,4 @@
 include_directories(.)
 add_library(agnostic SHARED action.cxx cond_eff.cxx conj_comp_prob.cxx fl_conj.cxx fluent.cxx fwd_search_prob.cxx landmark_graph.cxx match_tree.cxx mutex_set.cxx reachability.cxx strips_prob.cxx strips_state.cxx succ_gen.cxx watched_lit_succ_gen.cxx)
 #target_link_libraries(agnostic ${Boost_LIBRARIES})
+install(TARGETS agnostic DESTINATION ${__dest})

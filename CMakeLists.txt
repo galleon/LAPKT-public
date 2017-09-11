@@ -43,6 +43,7 @@ add_subdirectory(planners/bfs_f/src)
 # ICI JE CHERCHE A COPIER MES FICHIERS POUR EVENTUELLEMENT CREER MON MODULE
 
 set(PYTHON_INSTALL_CONFIGURATIONS "")
+message(WARNING "CREATING __DST")
 set(__dst "${PYTHON_PACKAGES_PATH}")
 
 message(WARNING "__dest: ${__dest}")
@@ -73,7 +74,3 @@ file(COPY external/fd DESTINATION "${__dest}")
 #  LIBRARY DESTINATION "${__dst}" COMPONENT python
 #  ${PYTHON_INSTALL_ARCHIVE}
 #)
-install(TARGETS aptk DESTINATION ${__dest})
-install(TARGETS agnostic DESTINATION ${__dest})
-install(TARGETS pyagnostic DESTINATION ${__dest})
-install(TARGETS fsf DESTINATION ${__dest})
